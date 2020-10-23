@@ -6,24 +6,34 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class BreweriesListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-
-    var brews: [Brewery] = [
-        Brewery(id: 1, name: "Avondale Brewing Co", breweryType: .brewpub, street: "201 41st St S", address2: nil, address3: nil, city: "Kyiv", state: "", countyProvince: nil, postalCode: "", country: "", longitude: "", latitude: "", phone: "123", websiteURL: "www.some.ua", updatedAt: "123"),
-        
-        Brewery(id: 2, name: "Avondal", breweryType: .brewpub, street: "2013 41st St S", address2: nil, address3: nil, city: "Lviv", state: "", countyProvince: nil, postalCode: "", country: "", longitude: "", latitude: "", phone: "123", websiteURL: "", updatedAt: "123")
-    ]
+    var brews: [Brewery] = []
+    
+    let search = UISearchController(searchResultsController: nil)
+    
+    let placeholderWidth = 130
+    
+    var offset = UIOffset()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        
         self.title = "Breweries"
         
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "MainColor")
+//        self.view.backgroundColor = UIColor(named: "MainColor")
+        
+//        offset = UIOffset(horizontal: (search.searchBar.frame.width - CGFloat(placeholderWidth)) / 2, vertical: 0)
+//        search.searchBar.setPositionAdjustment(offset, for: .search)
+        
+        setupTableView()
+        setupSearch()
+        fetchBreweries()
     }
     
     private func setupTableView() {
@@ -31,6 +41,43 @@ class BreweriesListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+    }
+    
+    private func setupSearch() {
+        search.searchResultsUpdater = self
+        search.searchBar.placeholder = "Search"
+        
+        search.searchBar.barStyle = .default
+        
+        search.hidesNavigationBarDuringPresentation = true
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.tintColor = UIColor.white
+        search.searchBar.getTextField()?.tintColor = UIColor.black
+        self.navigationItem.searchController = search
+        
+        search.searchBar.setTextField(color: UIColor.white)
+
+
+        search.searchBar.getTextField()?.textAlignment = .left
+
+
+    }
+    
+    func fetchBreweries() {
+        let request = AF.request("https://api.openbrewerydb.org/breweries")
+    
+        request
+            .validate()
+            .responseDecodable(of: [Brewery].self) { (response) in
+                guard let breweies = response.value else { return }
+                self.brews = breweies
+                self.tableView.reloadData()
+                print(breweies)
+           }
     }
 
 }
@@ -62,4 +109,28 @@ extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSourc
         return CGFloat.leastNormalMagnitude
     }
     
+    
+    
+}
+
+
+extension BreweriesListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+
+    
+    
+//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//        let noOffset = UIOffset(horizontal: 0, vertical: 0)
+//        searchBar.setPositionAdjustment(noOffset, for: .search)
+//
+//        return true
+//    }
+//
+//    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+//        searchBar.setPositionAdjustment(offset, for: .search)
+//
+//        return true
+//    }
 }
