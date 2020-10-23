@@ -23,7 +23,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fbI-bs-fXX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -39,11 +39,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fbI-bs-fXX" secondAttribute="trailing" id="kVi-cP-sll"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kSV-V0-ZWW" secondAttribute="bottom" id="rhu-Vs-ZFz"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="fbI-bs-fXX"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="btH-rP-sm3"/>
                     <connections>
@@ -62,7 +57,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HGE-Wv-2hj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="AccentColor-3"/>
+                        <color key="barTintColor" name="MainColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -76,7 +71,7 @@
     </scenes>
     <resources>
         <image name="background" width="144.5" height="244.5"/>
-        <namedColor name="AccentColor-3">
+        <namedColor name="MainColor">
             <color red="0.0040000001899898052" green="0.52499997615814209" blue="0.082000002264976501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">

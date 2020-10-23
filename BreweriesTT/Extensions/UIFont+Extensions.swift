@@ -31,8 +31,16 @@ public extension UIFont {
 
 // Remove to other files
 
-extension UINavigationController {
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return topViewController?.preferredStatusBarStyle ?? .default
+//extension UINavigationController {
+//    open override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return topViewController?.preferredStatusBarStyle ?? .default
+//    }
+//}
+
+extension UIView {
+    
+    class var identifier: String {
+        return String(describing: self)
     }
 }
+

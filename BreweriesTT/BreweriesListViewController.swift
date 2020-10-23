@@ -12,6 +12,11 @@ class BreweriesListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
 
+    var brews: [Brewery] = [
+        Brewery(id: 1, name: "Avondale Brewing Co", breweryType: .brewpub, street: "201 41st St S", address2: nil, address3: nil, city: "Kyiv", state: "", countyProvince: nil, postalCode: "", country: "", longitude: "", latitude: "", phone: "123", websiteURL: "www.some.ua", updatedAt: "123"),
+        
+        Brewery(id: 2, name: "Avondal", breweryType: .brewpub, street: "2013 41st St S", address2: nil, address3: nil, city: "Lviv", state: "", countyProvince: nil, postalCode: "", country: "", longitude: "", latitude: "", phone: "123", websiteURL: "", updatedAt: "123")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +24,10 @@ class BreweriesListViewController: UIViewController {
         
         self.title = "Breweries"
         
-        
-//        self.navigationController?.preferredStatusBarStyle = .lightContent
-        
-        
-//        self.navigationController?.navigationItem.title = "Breweries"
-        
     }
     
     private func setupTableView() {
+        tableView.register(UINib(nibName: BreweryTableViewCell.identifier, bundle: Bundle.main), forCellReuseIdentifier: BreweryTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
@@ -39,12 +39,21 @@ class BreweriesListViewController: UIViewController {
 extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return brews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseID")
-        cell.textLabel?.text = "test"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BreweryTableViewCell.identifier) as? BreweryTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.backgroundColor = .clear
+        cell.backgroundView = UIView()
+        cell.selectedBackgroundView = UIView()
+        
+        cell.brewery = brews[indexPath.row]
+        
         return cell
     }
     

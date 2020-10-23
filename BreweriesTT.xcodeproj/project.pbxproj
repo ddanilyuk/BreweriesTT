@@ -92,8 +92,8 @@
 			children = (
 				5F043875254312F6004F3513 /* AppDelegate.swift */,
 				5F043879254312F6004F3513 /* BreweriesListViewController.swift */,
-				5F0438A825433478004F3513 /* Brewery.swift */,
 				5F04389A25431C1B004F3513 /* BreweriesNavigationController.swift */,
+				5F0438A825433478004F3513 /* Brewery.swift */,
 				5F04387B254312F6004F3513 /* Main.storyboard */,
 				5F0438A2254321CC004F3513 /* BreweryTableViewCell */,
 				5F0438A625433412004F3513 /* CoreData */,

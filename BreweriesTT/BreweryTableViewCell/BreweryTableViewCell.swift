@@ -27,6 +27,9 @@ class BreweryTableViewCell: UITableViewCell {
     @IBOutlet weak var streetStackView: UIStackView!
     
     
+    @IBOutlet weak var cardView: UIView!
+    
+    
     public var brewery: Brewery? {
         didSet {
             guard let brewery = brewery else { return }
@@ -39,6 +42,8 @@ class BreweryTableViewCell: UITableViewCell {
             
             if brewery.websiteURL.isEmpty {
                 mainStackView.removeArrangedSubview(websiteStackView)
+                websiteStackView.isHidden = true
+                
             } else {
                 websiteButton.setTitle(brewery.websiteURL, for: .normal)
             }
@@ -47,6 +52,14 @@ class BreweryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
+        nameLabel.font = UIFont.iowanOldStyle.bold.font(size: 20)
+        nameLabel.textColor = UIColor(named: "BlackTextColor")
+        
+        cardView.layer.cornerRadius = 20
+        cardView.layer.borderWidth = 1
+        cardView.layer.borderColor = UIColor(named: "MainColor")?.cgColor
         // Initialization code
     }
 
