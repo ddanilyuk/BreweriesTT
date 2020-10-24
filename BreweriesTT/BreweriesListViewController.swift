@@ -17,16 +17,24 @@ class BreweriesListViewController: UIViewController {
     
     let search = UISearchController(searchResultsController: nil)
     
+    let dataManager = DataManagerSingleton.shared
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Breweries"
-        
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "MainColor")
-
-        
         setupTableView()
-        setupSearch()
-        fetchBreweries()
+        setupSearchAndNavigation()
+        
+        brews = dataManager.getData { newBrews in
+            // Receiving new brews from server
+            self.brews = newBrews
+            self.tableView.reloadData()
+        }
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarUIView?.backgroundColor = UIColor(named: "MainColor")
     }
     
     private func setupTableView() {
@@ -40,7 +48,12 @@ class BreweriesListViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
     
-    private func setupSearch() {
+    private func setupSearchAndNavigation() {
+        // Navaigation
+        self.title = "Breweries"
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "MainColor")
+        
+        // Search
         search.searchResultsUpdater = self
         search.searchBar.placeholder = "Search"
         
@@ -55,24 +68,9 @@ class BreweriesListViewController: UIViewController {
         search.searchBar.setTextField(color: UIColor.white)
 
 
-        search.searchBar.getTextField()?.textAlignment = .left
-
-
+//        search.searchBar.getTextField()?.textAlignment = .left
     }
     
-    func fetchBreweries() {
-        let request = AF.request("https://api.openbrewerydb.org/breweries")
-    
-        request
-            .validate()
-            .responseDecodable(of: [Brewery].self) { (response) in
-                guard let breweies = response.value else { return }
-                self.brews = breweies
-                self.tableView.reloadData()
-                print(breweies)
-           }
-    }
-
 }
 
 

@@ -11,16 +11,13 @@ import MapKit
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var cancelButton: UIButton!
     
     var initialLocation: CLLocation?
     var initialLocationName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        cancelButton.layer.cornerRadius = 20
-        
+                
         if let location = initialLocation {
             centerToLocation(location)
             
@@ -30,8 +27,6 @@ class MapViewController: UIViewController {
             mapView.addAnnotation(annotation)
         }
     }
-
-
     
     @IBAction func didPressClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

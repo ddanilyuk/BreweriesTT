@@ -107,8 +107,9 @@ class BreweryTableViewCell: UITableViewCell {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
             let vc = SFSafariViewController(url: url, configuration: config)
-            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+            UIApplication.shared.statusBarUIView?.backgroundColor = UIColor.clear
 
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -117,6 +118,7 @@ class BreweryTableViewCell: UITableViewCell {
         let location = CLLocation(latitude: Double(brewery.latitude) ?? 0, longitude: Double(brewery.longitude) ?? 0)
         guard let mapVC = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
         mapVC.modalPresentationStyle = .formSheet
+        
         self.window?.rootViewController?.present(mapVC, animated: true, completion: nil)
     }
     
