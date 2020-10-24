@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import MapKit
 
 public extension UIFont {
     enum iowanOldStyle: String {
@@ -165,3 +165,4 @@ private extension UITextField {
     
     func getClearButton() -> UIButton? { return value(forKey: "clearButton") as? UIButton }
 }
+

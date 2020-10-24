@@ -17,19 +17,12 @@ class BreweriesListViewController: UIViewController {
     
     let search = UISearchController(searchResultsController: nil)
     
-    let placeholderWidth = 130
-    
-    var offset = UIOffset()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Breweries"
         
         self.navigationController?.navigationBar.backgroundColor = UIColor(named: "MainColor")
-//        self.view.backgroundColor = UIColor(named: "MainColor")
-        
-//        offset = UIOffset(horizontal: (search.searchBar.frame.width - CGFloat(placeholderWidth)) / 2, vertical: 0)
-//        search.searchBar.setPositionAdjustment(offset, for: .search)
+
         
         setupTableView()
         setupSearch()
@@ -118,19 +111,4 @@ extension BreweriesListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
-
-    
-    
-//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-//        let noOffset = UIOffset(horizontal: 0, vertical: 0)
-//        searchBar.setPositionAdjustment(noOffset, for: .search)
-//
-//        return true
-//    }
-//
-//    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-//        searchBar.setPositionAdjustment(offset, for: .search)
-//
-//        return true
-//    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 import SafariServices
-
+import MapKit
 
 class BreweryTableViewCell: UITableViewCell {
     
@@ -18,6 +18,7 @@ class BreweryTableViewCell: UITableViewCell {
     @IBOutlet weak var countryLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var streetLabel: UILabel!
+    @IBOutlet weak var mapButton: UIButton!
     
     
     @IBOutlet weak var phonePlaceholderLabel: UILabel!
@@ -34,6 +35,7 @@ class BreweryTableViewCell: UITableViewCell {
     @IBOutlet weak var countryStackView: UIStackView!
     @IBOutlet weak var cityStackView: UIStackView!
     @IBOutlet weak var streetStackView: UIStackView!
+    @IBOutlet weak var mapStackView: UIStackView!
     
     
     @IBOutlet weak var cardView: UIView!
@@ -75,13 +77,7 @@ class BreweryTableViewCell: UITableViewCell {
         phoneLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         
         websiteButton.titleLabel?.font = UIFont.iowanOldStyle.roman.font(size: 13)
-//        let textAttributes = [
-//            NSAttributedString.Key.foregroundColor : UIColor.black,
-//            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single
-//        ]
-//        
-//        websiteButton.titleLabel.
-//        
+        mapButton.titleLabel?.font = UIFont.iowanOldStyle.roman.font(size: 13)
         countryLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         cityLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         streetLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
@@ -94,7 +90,8 @@ class BreweryTableViewCell: UITableViewCell {
         streetPlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
 
         
-        
+        mapButton.layer.cornerRadius = 8
+                
         cardView.layer.cornerRadius = 20
         cardView.layer.borderWidth = 1
         cardView.layer.borderColor = UIColor(named: "MainColor")?.cgColor
@@ -103,9 +100,8 @@ class BreweryTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
     @IBAction func didPressShowWebsite(_ sender: UIButton) {
         if let url = URL(string: brewery?.websiteURL ?? "") {
             let config = SFSafariViewController.Configuration()
@@ -114,6 +110,14 @@ class BreweryTableViewCell: UITableViewCell {
             self.window?.rootViewController?.present(vc, animated: true, completion: nil)
 
         }
+    }
+    
+    @IBAction func didPressShowOnMap(_ sender: UIButton) {
+        guard let brewery = brewery else { return }
+        let location = CLLocation(latitude: Double(brewery.latitude) ?? 0, longitude: Double(brewery.longitude) ?? 0)
+        guard let mapVC = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
+        mapVC.modalPresentationStyle = .formSheet
+        self.window?.rootViewController?.present(mapVC, animated: true, completion: nil)
     }
     
 }

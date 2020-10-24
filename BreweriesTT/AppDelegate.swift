@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarUIView?.backgroundColor = UIColor(named: "MainColor")
 
+        if let window = UIApplication.shared.windows.first as UIWindow? {
+            window.backgroundColor = UIColor(named: "MainColor")
+        }
         // Override point for customization after application launch.
         return true
     }

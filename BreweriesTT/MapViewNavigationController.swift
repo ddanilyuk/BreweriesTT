@@ -1,0 +1,31 @@
+//
+//  MapViewNavigationController.swift
+//  BreweriesTT
+//
+//  Created by Денис Данилюк on 24.10.2020.
+//
+
+import UIKit
+import MapKit
+
+class MapViewNavigationController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+    
+    static func instantiateMapViewControllerWithNavigation(with location: CLLocation, name: String) -> MapViewNavigationController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let navigataionVC = storyboard.instantiateViewController(withIdentifier: String(describing: MapViewNavigationController.self)) as? MapViewNavigationController else { return nil }
+        
+        guard let mapViewController = navigataionVC.viewControllers.first as? MapViewController else { return nil }
+        mapViewController.initialLocation = location
+        mapViewController.initialLocationName = name
+        mapViewController.title = name
+        
+        return navigataionVC
+    }
+    
+}

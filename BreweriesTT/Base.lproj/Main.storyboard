@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8m1-s8-Evh">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -15,15 +15,15 @@
             <objects>
                 <viewController storyboardIdentifier="BreweriesListViewController" id="BYZ-38-t0r" customClass="BreweriesListViewController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="kSV-V0-ZWW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fbI-bs-fXX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -35,7 +35,7 @@
                             <constraint firstItem="kSV-V0-ZWW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DJN-Ry-W3S"/>
                             <constraint firstItem="fbI-bs-fXX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KhC-uD-cvl"/>
                             <constraint firstItem="fbI-bs-fXX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MLb-3q-dG2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fbI-bs-fXX" secondAttribute="bottom" id="Rq1-dy-PFo"/>
+                            <constraint firstAttribute="bottom" secondItem="fbI-bs-fXX" secondAttribute="bottom" id="Rq1-dy-PFo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fbI-bs-fXX" secondAttribute="trailing" id="kVi-cP-sll"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kSV-V0-ZWW" secondAttribute="bottom" id="rhu-Vs-ZFz"/>
                         </constraints>
@@ -49,13 +49,95 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="118.52678571428571"/>
         </scene>
+        <!--Brewery-->
+        <scene sceneID="UPf-sk-ZYv">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="iYf-iX-VZp" customClass="MapViewController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ei7-d6-Eil">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-Iz-mr6">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-Zi-1tW">
+                                <rect key="frame" x="16" y="104" width="40" height="40"/>
+                                <color key="backgroundColor" name="MainColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9oJ-FR-1Iv"/>
+                                    <constraint firstAttribute="width" constant="40" id="jvh-hn-3Lv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressCancel:" destination="iYf-iX-VZp" eventType="touchUpInside" id="irM-H5-wpr"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Iu-L1-lTG">
+                                <rect key="frame" x="75" y="44" width="225" height="30"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfH-gI-2po">
+                                        <rect key="frame" x="92.666666666666657" y="13" width="40" height="4"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="mXu-02-bmR"/>
+                                            <constraint firstAttribute="height" constant="4" id="sOX-aU-Qef"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LVz-dW-hI3"/>
+                                    <constraint firstItem="LfH-gI-2po" firstAttribute="centerY" secondItem="6Iu-L1-lTG" secondAttribute="centerY" id="brs-xs-Mfi"/>
+                                    <constraint firstItem="LfH-gI-2po" firstAttribute="centerX" secondItem="6Iu-L1-lTG" secondAttribute="centerX" id="lSN-hI-JU9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wgt-Kz-EHJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JAV-Zi-1tW" firstAttribute="leading" secondItem="wgt-Kz-EHJ" secondAttribute="leading" constant="16" id="5gl-M6-53G"/>
+                            <constraint firstItem="wgt-Kz-EHJ" firstAttribute="trailing" secondItem="dh2-Iz-mr6" secondAttribute="trailing" id="LUa-O3-sFJ"/>
+                            <constraint firstItem="dh2-Iz-mr6" firstAttribute="leading" secondItem="wgt-Kz-EHJ" secondAttribute="leading" id="Me3-ao-ufh"/>
+                            <constraint firstItem="6Iu-L1-lTG" firstAttribute="centerX" secondItem="wgt-Kz-EHJ" secondAttribute="centerX" id="TZb-bH-f4g"/>
+                            <constraint firstItem="dh2-Iz-mr6" firstAttribute="top" secondItem="wgt-Kz-EHJ" secondAttribute="top" id="VPz-jy-Slo"/>
+                            <constraint firstItem="6Iu-L1-lTG" firstAttribute="top" secondItem="wgt-Kz-EHJ" secondAttribute="top" id="dIK-rG-h4A"/>
+                            <constraint firstItem="6Iu-L1-lTG" firstAttribute="width" secondItem="Ei7-d6-Eil" secondAttribute="width" multiplier="0.6" id="ieZ-Ce-yGX"/>
+                            <constraint firstItem="JAV-Zi-1tW" firstAttribute="top" secondItem="wgt-Kz-EHJ" secondAttribute="top" constant="16" id="mbU-mA-Aew"/>
+                            <constraint firstAttribute="bottom" secondItem="dh2-Iz-mr6" secondAttribute="bottom" id="nfE-Kk-CqV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="JAV-Zi-1tW"/>
+                                <exclude reference="6Iu-L1-lTG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Brewery" id="DWY-9C-5ds">
+                        <barButtonItem key="leftBarButtonItem" title="Close" style="plain" id="IbH-5J-5AI">
+                            <connections>
+                                <action selector="didPressClose:" destination="iYf-iX-VZp" id="ETX-hu-0VW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="JAV-Zi-1tW" id="mEG-6e-YX4"/>
+                        <outlet property="mapView" destination="dh2-Iz-mr6" id="hlP-65-Ec6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eLC-Gc-uVP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3480.8000000000002" y="118.22660098522168"/>
+        </scene>
         <!--Breweries Navigation Controller-->
         <scene sceneID="Fow-Al-CaA">
             <objects>
                 <navigationController storyboardIdentifier="BreweriesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8m1-s8-Evh" customClass="BreweriesNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HGE-Wv-2hj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="MainColor"/>
                     </navigationBar>
@@ -68,14 +150,38 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </scene>
+        <!--Map View Navigation Controller-->
+        <scene sceneID="8wS-jp-Tcz">
+            <objects>
+                <navigationController storyboardIdentifier="MapViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="obr-tw-1UO" customClass="MapViewNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OQw-pn-FeD">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iYf-iX-VZp" kind="relationship" relationship="rootViewController" id="KoG-Sp-fmQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g1f-Q1-D3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2609" y="118"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="144.5" height="244.5"/>
         <namedColor name="MainColor">
             <color red="0.0040000001899898052" green="0.52499997615814209" blue="0.082000002264976501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
