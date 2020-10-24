@@ -67,7 +67,8 @@ class BreweriesListViewController: UIViewController {
         search.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
-
+        
+        
         // Search bar apppearance
         search.searchBar.textField?.tintColor = UIColor.black
         search.searchBar.textField?.backgroundColor = UIColor.white

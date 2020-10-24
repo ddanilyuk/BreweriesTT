@@ -114,7 +114,6 @@
 				5F0438A625433412004F3513 /* CoreData */,
 				5F04389425431535004F3513 /* Extensions */,
 				5F0438A525433408004F3513 /* Resources */,
-				5F04387E254312F6004F3513 /* BreweriesTT.xcdatamodeld */,
 				5F043886254312F9004F3513 /* Info.plist */,
 			);
 			path = BreweriesTT;
@@ -151,6 +150,7 @@
 		5F0438A625433412004F3513 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				5F04387E254312F6004F3513 /* BreweriesTT.xcdatamodeld */,
 				5F15456A254451C400FB93EB /* BreweryData+CoreDataClass.swift */,
 				5F15456B254451C400FB93EB /* BreweryData+CoreDataProperties.swift */,
 			);

@@ -28,6 +28,7 @@ class DataManagerSingleton {
                 complition(breweies.sorted { $0.id < $1.id })
             }
         
+        
         return fetchCoreData()
     }
     
