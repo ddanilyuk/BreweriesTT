@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiu-Vm-gFX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="822"/>
+            <point key="canvasLocation" x="1416" y="118"/>
         </scene>
         <!--Brewery-->
         <scene sceneID="UPf-sk-ZYv">
@@ -75,54 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLC-Gc-uVP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3480.8000000000002" y="118.22660098522168"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Fow-Al-CaA">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8m1-s8-Evh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HGE-Wv-2hj">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="MainColor"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YEb-rD-2n4" kind="relationship" relationship="rootViewController" id="0MP-76-IlF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ubK-bW-8kI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="fJB-l5-zcm">
-            <objects>
-                <viewController id="YEb-rD-2n4" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4SJ-6A-fFu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-CD-qTN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Cba-YZ-Hd8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="gK8-CD-qTN" firstAttribute="top" secondItem="4SJ-6A-fFu" secondAttribute="top" id="C7u-lR-TAC"/>
-                            <constraint firstItem="Cba-YZ-Hd8" firstAttribute="trailing" secondItem="gK8-CD-qTN" secondAttribute="trailing" id="KSt-fb-Ivr"/>
-                            <constraint firstItem="gK8-CD-qTN" firstAttribute="leading" secondItem="Cba-YZ-Hd8" secondAttribute="leading" id="W3Z-4c-SOk"/>
-                            <constraint firstItem="Cba-YZ-Hd8" firstAttribute="bottom" secondItem="gK8-CD-qTN" secondAttribute="bottom" id="mbP-CM-F2j"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="aDB-xj-yGa"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eVV-Ai-qrW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1045" y="118"/>
+            <point key="canvasLocation" x="1377" y="876"/>
         </scene>
         <!--Map View Navigation Controller-->
         <scene sceneID="8wS-jp-Tcz">
@@ -140,7 +93,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1f-Q1-D3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="118"/>
+            <point key="canvasLocation" x="506" y="876"/>
         </scene>
         <!--Breweries Navigation Controller-->
         <scene sceneID="EJA-bH-hQH">
@@ -159,7 +112,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DW2-bW-EmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="822"/>
+            <point key="canvasLocation" x="506" y="118"/>
         </scene>
     </scenes>
     <resources>

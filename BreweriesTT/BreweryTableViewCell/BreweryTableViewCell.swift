@@ -126,19 +126,22 @@ class BreweryTableViewCell: UITableViewCell {
         // Remove all stacks and add them in the correct order
         let allStacks: [UIStackView] = [phoneStackView, websiteStackView, countryStackView, cityStackView, streetStackView, mapStackView]
 
-        for stack in allStacks {
-            mainStackView.removeArrangedSubview(stack)
-        }
-        for stack in allStacks {
-            mainStackView.addArrangedSubview(stack)
-            stack.isHidden = false
-        }
+        allStacks.forEach( { stackView in
+            mainStackView.removeArrangedSubview(stackView)
+        })
+        
+        allStacks.forEach( { stackView in
+            mainStackView.addArrangedSubview(stackView)
+            stackView.isHidden = false
+        })
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    // Present SFSafariViewController
     @IBAction func didPressShowWebsite(_ sender: UIButton) {
         if let url = URL(string: brewery?.websiteURL ?? "") {
             let configuration = SFSafariViewController.Configuration()
@@ -148,6 +151,7 @@ class BreweryTableViewCell: UITableViewCell {
         }
     }
     
+    // Present MapViewController
     @IBAction func didPressShowOnMap(_ sender: UIButton) {
         guard let brewery = brewery else { return }
         let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)

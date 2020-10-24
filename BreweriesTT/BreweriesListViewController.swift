@@ -64,13 +64,13 @@ class BreweriesListViewController: UIViewController {
         search.searchBar.barStyle = .default
         
         search.obscuresBackgroundDuringPresentation = false
-        
         search.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
+
         // Search bar apppearance
-        search.searchBar.getTextField()?.tintColor = UIColor.black
-        search.searchBar.setTextField(color: UIColor.white)
+        search.searchBar.textField?.tintColor = UIColor.black
+        search.searchBar.textField?.backgroundColor = UIColor.white
         search.searchBar.tintColor = UIColor.white
     }
     
@@ -116,21 +116,15 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
         
         if isSearching {
             // Requesting new breweries from server
-//            print("try to get new breweries")
             search.searchBar.isLoading = true
             dataManager.getBreweries(with: searchText) { newBrews in
                 self.search.searchBar.isLoading = false
-//
-                print("in new breweries")
-//                print("newBrews.count", newBrews.count)
-//                print("actual text", searchController.searchBar.text?.lowercased() ?? "")
-//                print("search text", searchText)
                 self.brewsInSearch = newBrews.filter { $0.name.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "")  }
-                print(self.brewsInSearch.count)
+                print("Find in server \(self.brewsInSearch.count) breweries")
                 self.tableView.reloadData()
-
             }
             
+            // If user entered only 1 Character, try to filter started array
             if lowerCaseSearchText.count == 1 {
                 brewsInSearch = brews.filter { $0.name.lowercased().contains(lowerCaseSearchText) }.sorted(by: { $0.id < $1.id })
             }

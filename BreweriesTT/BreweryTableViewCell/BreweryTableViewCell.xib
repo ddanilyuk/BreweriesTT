@@ -48,7 +48,7 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="nYh-r9-cLU"/>
+                                            <constraint firstAttribute="height" priority="999" constant="20" id="qEV-RJ-Oac"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PcV-IS-1kd">
@@ -60,17 +60,17 @@
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoN-5v-mHu">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoN-5v-mHu">
                                                 <rect key="frame" x="63" y="0.0" width="248" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="www.beer.com"/>
+                                                <state key="normal" title="www.beer.commwww.beer.commwww.beer.comm"/>
                                                 <connections>
                                                     <action selector="didPressShowWebsite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3lY-KE-DMt"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="xoA-N6-sex"/>
+                                            <constraint firstAttribute="height" priority="999" constant="20" id="dVu-Kr-Bpn"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="M8s-fo-xFp">
@@ -110,7 +110,7 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="sRh-nz-xNP"/>
+                                            <constraint firstAttribute="height" priority="999" constant="20" id="Xpi-ot-wyC"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vAX-Ae-jic">
@@ -130,7 +130,7 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="TIP-so-aCy"/>
+                                            <constraint firstAttribute="height" priority="999" constant="20" id="HP8-zX-AiN"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-UK-w5F">
@@ -140,6 +140,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="24"/>
                                                 <color key="backgroundColor" name="MainColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" priority="999" constant="24" id="lRu-SN-C3q"/>
                                                     <constraint firstAttribute="width" constant="100" id="vmZ-Pr-cCl"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -155,9 +156,6 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="ug3-eG-Kxp"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>

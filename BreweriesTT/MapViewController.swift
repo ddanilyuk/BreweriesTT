@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        // Setup location
         if let location = initialLocation {
             centerToLocation(location)
             
@@ -32,7 +33,7 @@ class MapViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 100) {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 200) {
         let coordinateRegion = MKCoordinateRegion(
             center: location.coordinate,
             latitudinalMeters: regionRadius,

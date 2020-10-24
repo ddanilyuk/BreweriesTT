@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Brewery: Codable {
     let id: Int
     let name: String
