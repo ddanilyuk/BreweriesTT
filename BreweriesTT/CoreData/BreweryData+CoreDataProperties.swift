@@ -35,27 +35,27 @@ extension BreweryData {
     
     var wrappedBrewery: Brewery {
         return Brewery(id: Int(id),
-                       name: name ?? "",
-                       breweryType: BreweryType(rawValue: breweryType ?? "") ?? .micro,
-                       street: street ?? "",
+                       name: name ?? "-",
+                       breweryType: breweryType,
+                       street: street,
                        address2: address2,
                        address3: address3,
-                       city: city ?? "",
-                       state: state ?? "",
+                       city: city,
+                       state: state,
                        countyProvince: countyProvince,
-                       postalCode: postalCode ?? "",
-                       country: country ?? "",
-                       longitude: longitude ?? "",
-                       latitude: latitude ?? "",
-                       phone: phone ?? "",
-                       websiteURL: websiteURL ?? "",
-                       updatedAt: updatedAt ?? "")
+                       postalCode: postalCode,
+                       country: country,
+                       longitude: longitude,
+                       latitude: latitude,
+                       phone: phone,
+                       websiteURL: websiteURL,
+                       updatedAt: updatedAt)
     }
     
     func fillWith(brewery: Brewery) {
         self.id = Int16(brewery.id)
         self.name = brewery.name
-        self.breweryType = brewery.breweryType.rawValue
+        self.breweryType = brewery.breweryType
         self.street = brewery.street
         self.address2 = brewery.address2
         self.address3 = brewery.address3

@@ -80,7 +80,7 @@ class BreweriesListViewController: UIViewController {
 extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return brews.count
+        return isSearching ? brewsInSearch.count : brews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,7 +93,7 @@ extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSourc
         cell.backgroundView = UIView()
         cell.selectedBackgroundView = UIView()
         
-        cell.brewery = brews[indexPath.row]
+        cell.brewery = isSearching ? brewsInSearch[indexPath.row] : brews[indexPath.row]
         
         return cell
     }
@@ -102,8 +102,41 @@ extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSourc
 
 
 extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
     func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        let lowerCaseSearchText = searchText.lowercased()
         
+        if lowerCaseSearchText == "" {
+            brewsInSearch = []
+            isSearching = false
+        } else {
+            isSearching = true
+        }
+        
+        if isSearching {
+            // Requesting new breweries from server
+//            print("try to get new breweries")
+            search.searchBar.isLoading = true
+            dataManager.getBreweries(with: searchText) { newBrews in
+                self.search.searchBar.isLoading = false
+//
+                print("in new breweries")
+//                print("newBrews.count", newBrews.count)
+//                print("actual text", searchController.searchBar.text?.lowercased() ?? "")
+//                print("search text", searchText)
+                self.brewsInSearch = newBrews.filter { $0.name.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "")  }
+                print(self.brewsInSearch.count)
+                self.tableView.reloadData()
+
+            }
+            
+            if lowerCaseSearchText.count == 1 {
+                brewsInSearch = brews.filter { $0.name.lowercased().contains(lowerCaseSearchText) }.sorted(by: { $0.id < $1.id })
+            }
+        }
+        tableView.reloadData()
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

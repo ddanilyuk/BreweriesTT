@@ -11,20 +11,20 @@ import Foundation
 struct Brewery: Codable {
     let id: Int
     let name: String
-    let breweryType: BreweryType
-    let street: String
+    let breweryType: String?
+    let street: String?
     let address2: String?
     let address3: String?
-    let city: String
-    let state: String
+    let city: String?
+    let state: String?
     let countyProvince: String?
-    let postalCode: String
-    let country: String
-    let longitude: String
-    let latitude: String
-    let phone: String
-    let websiteURL: String
-    let updatedAt: String
+    let postalCode: String?
+    let country: String?
+    let longitude: String?
+    let latitude: String?
+    let phone: String?
+    let websiteURL: String?
+    let updatedAt: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -39,12 +39,4 @@ struct Brewery: Codable {
         case websiteURL = "website_url"
         case updatedAt = "updated_at"
     }
-}
-
-
-enum BreweryType: String, Codable {
-    case brewpub = "brewpub"
-    case contract = "contract"
-    case micro = "micro"
-    case regional = "regional"
 }

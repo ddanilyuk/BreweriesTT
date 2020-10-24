@@ -44,24 +44,53 @@ class BreweryTableViewCell: UITableViewCell {
     public var brewery: Brewery? {
         didSet {
             guard let brewery = brewery else { return }
-            
             nameLabel.text = brewery.name
-            phoneLabel.text = brewery.phone
-            countryLabel.text = brewery.country
-            cityLabel.text = brewery.city
-            streetLabel.text = brewery.street
             
-            if brewery.websiteURL.isEmpty {
-                mainStackView.removeArrangedSubview(websiteStackView)
-                websiteStackView.isHidden = true
+            if let phone = brewery.phone, !phone.isEmpty {
+                phoneLabel.text = phone
+            } else {
+                mainStackView.removeArrangedSubview(phoneStackView)
+                phoneStackView.isHidden = true
+            }
+            
+            if let country = brewery.country, !country.isEmpty {
+                countryLabel.text = country
+            } else {
+                mainStackView.removeArrangedSubview(countryStackView)
+                countryStackView.isHidden = true
+            }
+            
+            if let city = brewery.city, !city.isEmpty {
+                cityLabel.text = city
+            } else {
+                mainStackView.removeArrangedSubview(cityStackView)
+                cityStackView.isHidden = true
+            }
+            
+            if let street = brewery.street, !street.isEmpty {
+                streetLabel.text = street
+            } else {
+                mainStackView.removeArrangedSubview(streetStackView)
+                streetStackView.isHidden = true
+            }
+            
+            if let latitude = brewery.latitude, let longitude = brewery.longitude, !latitude.isEmpty, !longitude.isEmpty {
                 
             } else {
-                let websiteAttributedText = NSMutableAttributedString(string: brewery.websiteURL, attributes: [
+                mainStackView.removeArrangedSubview(mapStackView)
+                mapStackView.isHidden = true
+            }
+            
+            if let websiteURL = brewery.websiteURL, !websiteURL.isEmpty {
+                let websiteAttributedText = NSMutableAttributedString(string: brewery.websiteURL!, attributes: [
                     NSAttributedString.Key.font : UIFont.iowanOldStyle.roman.font(size: 13),
                     NSAttributedString.Key.foregroundColor : UIColor.black.cgColor,
                     NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
                 ])
                 websiteButton.setAttributedTitle(websiteAttributedText, for: .normal)
+            } else {
+                mainStackView.removeArrangedSubview(websiteStackView)
+                websiteStackView.isHidden = true
             }
         }
     }
@@ -69,57 +98,63 @@ class BreweryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        // Set fonts
         nameLabel.font = UIFont.iowanOldStyle.bold.font(size: 20)
         nameLabel.textColor = UIColor(named: "BlackTextColor")
         
-        
         phoneLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
-        
         websiteButton.titleLabel?.font = UIFont.iowanOldStyle.roman.font(size: 13)
         mapButton.titleLabel?.font = UIFont.iowanOldStyle.roman.font(size: 13)
         countryLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         cityLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         streetLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
-        
-        
         phonePlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         websitePlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         countryPlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         cityPlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         streetPlaceholderLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
-
         
+        // Edit apperance
         mapButton.layer.cornerRadius = 8
-                
         cardView.layer.cornerRadius = 20
         cardView.layer.borderWidth = 1
         cardView.layer.borderColor = UIColor(named: "MainColor")?.cgColor
-        // Initialization code
     }
 
+    
+    override func prepareForReuse() {
+        // Remove all stacks and add them in the correct order
+        let allStacks: [UIStackView] = [phoneStackView, websiteStackView, countryStackView, cityStackView, streetStackView, mapStackView]
+
+        for stack in allStacks {
+            mainStackView.removeArrangedSubview(stack)
+        }
+        for stack in allStacks {
+            mainStackView.addArrangedSubview(stack)
+            stack.isHidden = false
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     @IBAction func didPressShowWebsite(_ sender: UIButton) {
         if let url = URL(string: brewery?.websiteURL ?? "") {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            let vc = SFSafariViewController(url: url, configuration: config)
-            UIApplication.shared.statusBarUIView?.backgroundColor = UIColor.clear
-
-            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+            let configuration = SFSafariViewController.Configuration()
+            configuration.entersReaderIfAvailable = true
+            let safariViewController = SFSafariViewController(url: url, configuration: configuration)
+            self.window?.rootViewController?.present(safariViewController, animated: true, completion: nil)
         }
     }
     
     @IBAction func didPressShowOnMap(_ sender: UIButton) {
         guard let brewery = brewery else { return }
-        let location = CLLocation(latitude: Double(brewery.latitude) ?? 0, longitude: Double(brewery.longitude) ?? 0)
-        guard let mapVC = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
-        mapVC.modalPresentationStyle = .formSheet
+        let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)
+        guard let mapViewController = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
+        mapViewController.modalPresentationStyle = .formSheet
         
-        self.window?.rootViewController?.present(mapVC, animated: true, completion: nil)
+        self.window?.rootViewController?.present(mapViewController, animated: true, completion: nil)
     }
     
 }

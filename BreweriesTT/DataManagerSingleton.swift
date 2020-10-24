@@ -16,10 +16,9 @@ class DataManagerSingleton {
     init () {}
     
     func getData(complition: @escaping ([Brewery]) -> ()) -> [Brewery] {
-        
+        // Disabbling cahce because we have CoreData
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
 
-        
         let request = AF.request("https://api.openbrewerydb.org/breweries")
         
         request
@@ -37,6 +36,22 @@ class DataManagerSingleton {
         return fetchCoreData()
     }
     
+    func getBreweries(with name: String, complition: @escaping ([Brewery]) -> ()) {
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+
+//        print("in request")
+        let request = AF.request("https://api.openbrewerydb.org/breweries", parameters: ["by_name": name])
+        
+        request
+            .validate()
+            .responseDecodable(of: [Brewery].self) { (response) in
+//                print(response.description)
+                guard let breweies = response.value else { return }
+//                print("inside response \(breweies.count)")
+                complition(breweies.sorted { $0.id < $1.id })
+            }
+    }
+    
     func fetchCoreData() -> [Brewery] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -51,7 +66,6 @@ class DataManagerSingleton {
         let managedContext = appDelegate.persistentContainer.viewContext
         self.deleteAllFromCoreData()
 
-//        let queue = DispatchQueue(label: "Updating databse", qos: .default)
         DispatchQueue.main.async {
             for brewery in breweries {
                 let breweryData = BreweryData(context: managedContext)
