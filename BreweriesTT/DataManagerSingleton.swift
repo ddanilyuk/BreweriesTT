@@ -27,7 +27,6 @@ class DataManagerSingleton {
             .responseDecodable(of: [Brewery].self) { (response) in
                 guard let breweies = response.value else { return }
                 
-                self.deleteAllFromCoreData()
                 self.updateCoreData(withNew: breweies)
                 print("New breweries loaded and added to core data!")
                 
@@ -50,9 +49,10 @@ class DataManagerSingleton {
     func updateCoreData(withNew breweries: [Brewery]) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let queue = DispatchQueue(label: "Updating databse", qos: .background)
-        queue.async {
+        self.deleteAllFromCoreData()
+
+//        let queue = DispatchQueue(label: "Updating databse", qos: .default)
+        DispatchQueue.main.async {
             for brewery in breweries {
                 let breweryData = BreweryData(context: managedContext)
                 breweryData.fillWith(brewery: brewery)
@@ -65,7 +65,6 @@ class DataManagerSingleton {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
-
     }
     
     func deleteAllFromCoreData() {

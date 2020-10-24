@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8m1-s8-Evh">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5v6-Nx-Mza">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -10,55 +10,47 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Breweries List View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Breweries-->
+        <scene sceneID="6bc-eD-Lw0">
             <objects>
-                <viewController storyboardIdentifier="BreweriesListViewController" id="BYZ-38-t0r" customClass="BreweriesListViewController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                <viewController storyboardIdentifier="BreweriesListViewController" id="Zxw-S4-iUa" customClass="BreweriesListViewController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eWx-CS-z6G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="kSV-V0-ZWW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fbI-bs-fXX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QqI-hw-hcz">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="ncu-jT-aGH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kSV-V0-ZWW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Mk-TE-6vq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kSV-V0-ZWW" secondAttribute="trailing" id="CWM-vE-hSN"/>
-                            <constraint firstItem="kSV-V0-ZWW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DJN-Ry-W3S"/>
-                            <constraint firstItem="fbI-bs-fXX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KhC-uD-cvl"/>
-                            <constraint firstItem="fbI-bs-fXX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MLb-3q-dG2"/>
-                            <constraint firstAttribute="bottom" secondItem="fbI-bs-fXX" secondAttribute="bottom" id="Rq1-dy-PFo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fbI-bs-fXX" secondAttribute="trailing" id="kVi-cP-sll"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kSV-V0-ZWW" secondAttribute="bottom" id="rhu-Vs-ZFz"/>
+                            <constraint firstAttribute="bottom" secondItem="QqI-hw-hcz" secondAttribute="bottom" id="2zN-rH-B2G"/>
+                            <constraint firstItem="QqI-hw-hcz" firstAttribute="leading" secondItem="ncu-jT-aGH" secondAttribute="leading" id="8QY-M7-BM7"/>
+                            <constraint firstItem="ncu-jT-aGH" firstAttribute="trailing" secondItem="QqI-hw-hcz" secondAttribute="trailing" id="Bqk-Vl-nNh"/>
+                            <constraint firstItem="QqI-hw-hcz" firstAttribute="top" secondItem="ncu-jT-aGH" secondAttribute="top" id="Zga-hy-e2z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="btH-rP-sm3"/>
+                    <navigationItem key="navigationItem" title="Breweries" id="G2J-Qx-cns"/>
                     <connections>
-                        <outlet property="tableView" destination="fbI-bs-fXX" id="Ehl-a6-erv"/>
+                        <outlet property="tableView" destination="QqI-hw-hcz" id="its-Io-HoO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiu-Vm-gFX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="118.52678571428571"/>
+            <point key="canvasLocation" x="1049" y="822"/>
         </scene>
         <!--Brewery-->
         <scene sceneID="UPf-sk-ZYv">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="iYf-iX-VZp" customClass="MapViewController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ei7-d6-Eil">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dh2-Iz-mr6">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wgt-Kz-EHJ"/>
@@ -85,24 +77,52 @@
             </objects>
             <point key="canvasLocation" x="3480.8000000000002" y="118.22660098522168"/>
         </scene>
-        <!--Breweries Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="Fow-Al-CaA">
             <objects>
-                <navigationController storyboardIdentifier="BreweriesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8m1-s8-Evh" customClass="BreweriesNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8m1-s8-Evh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HGE-Wv-2hj">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="MainColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8IY-5o-mc4"/>
+                        <segue destination="YEb-rD-2n4" kind="relationship" relationship="rootViewController" id="0MP-76-IlF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubK-bW-8kI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fJB-l5-zcm">
+            <objects>
+                <viewController id="YEb-rD-2n4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4SJ-6A-fFu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-CD-qTN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Cba-YZ-Hd8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gK8-CD-qTN" firstAttribute="top" secondItem="4SJ-6A-fFu" secondAttribute="top" id="C7u-lR-TAC"/>
+                            <constraint firstItem="Cba-YZ-Hd8" firstAttribute="trailing" secondItem="gK8-CD-qTN" secondAttribute="trailing" id="KSt-fb-Ivr"/>
+                            <constraint firstItem="gK8-CD-qTN" firstAttribute="leading" secondItem="Cba-YZ-Hd8" secondAttribute="leading" id="W3Z-4c-SOk"/>
+                            <constraint firstItem="Cba-YZ-Hd8" firstAttribute="bottom" secondItem="gK8-CD-qTN" secondAttribute="bottom" id="mbP-CM-F2j"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aDB-xj-yGa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eVV-Ai-qrW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045" y="118"/>
         </scene>
         <!--Map View Navigation Controller-->
         <scene sceneID="8wS-jp-Tcz">
@@ -110,7 +130,7 @@
                 <navigationController storyboardIdentifier="MapViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="obr-tw-1UO" customClass="MapViewNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OQw-pn-FeD">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -122,9 +142,27 @@
             </objects>
             <point key="canvasLocation" x="2609" y="118"/>
         </scene>
+        <!--Breweries Navigation Controller-->
+        <scene sceneID="EJA-bH-hQH">
+            <objects>
+                <navigationController storyboardIdentifier="BreweriesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="5v6-Nx-Mza" customClass="BreweriesNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BAH-fw-D0a">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="MainColor"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Zxw-S4-iUa" kind="relationship" relationship="rootViewController" id="Rcz-Vx-GIV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DW2-bW-EmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="822"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="background" width="144.5" height="244.5"/>
         <namedColor name="MainColor">
             <color red="0.0040000001899898052" green="0.52499997615814209" blue="0.082000002264976501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

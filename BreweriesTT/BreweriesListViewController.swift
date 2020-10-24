@@ -14,11 +14,12 @@ class BreweriesListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var brews: [Brewery] = []
+    var brewsInSearch: [Brewery] = []
     
     let search = UISearchController(searchResultsController: nil)
-    
+    var isSearching: Bool = false
+
     let dataManager = DataManagerSingleton.shared
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,42 +34,44 @@ class BreweriesListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarUIView?.backgroundColor = UIColor(named: "MainColor")
-    }
-    
     private func setupTableView() {
         tableView.register(UINib(nibName: BreweryTableViewCell.identifier, bundle: Bundle.main), forCellReuseIdentifier: BreweryTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .clear
         
+        // Setup table view background
+        let tableViewBackgroundImage = UIImage(named: "background")
+        let tableViewBackroundImageView = UIImageView(frame: tableView.frame)
+        tableViewBackroundImageView.image = tableViewBackgroundImage
+        tableViewBackroundImageView.contentMode = .bottomRight
+        tableView.backgroundView = tableViewBackroundImageView
+        
+        // Setup
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
     
     private func setupSearchAndNavigation() {
         // Navaigation
         self.title = "Breweries"
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "MainColor")
         
         // Search
         search.searchResultsUpdater = self
+        search.searchBar.delegate = self
+        self.navigationItem.searchController = search
+
         search.searchBar.placeholder = "Search"
-        
         search.searchBar.barStyle = .default
         
-        search.hidesNavigationBarDuringPresentation = true
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.tintColor = UIColor.white
-        search.searchBar.getTextField()?.tintColor = UIColor.black
-        self.navigationItem.searchController = search
         
+        search.hidesNavigationBarDuringPresentation = false
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        // Search bar apppearance
+        search.searchBar.getTextField()?.tintColor = UIColor.black
         search.searchBar.setTextField(color: UIColor.white)
-
-
-//        search.searchBar.getTextField()?.textAlignment = .left
+        search.searchBar.tintColor = UIColor.white
     }
     
 }
@@ -94,19 +97,17 @@ extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSourc
         
         return cell
     }
-    
-    // This delete empty cells
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNormalMagnitude
-    }
-    
-    
-    
+
 }
 
 
-extension BreweriesListViewController: UISearchResultsUpdating {
+extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("clicked")
+    }
+
 }
