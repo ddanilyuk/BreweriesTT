@@ -32,10 +32,6 @@ class MapViewController: UIViewController {
     }
 
 
-    // TODO:- Remove this
-    @IBAction func didPressCancel(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     @IBAction func didPressClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
