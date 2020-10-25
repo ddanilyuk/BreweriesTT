@@ -79,6 +79,8 @@ class BreweriesListViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
+        searchController.searchBar.setCenteredPlaceHolder()
+        
         // Search bar apppearance
         searchController.searchBar.textField?.tintColor = UIColor.black
         searchController.searchBar.tintColor = UIColor.white
@@ -154,7 +156,7 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
                     
                     // Apply new breweries
                     self?.breweriesInSearch = newBrews
-                    print("Find in server \(self?.breweriesInSearch.count ?? -1) breweries")
+                    print("Find on server \(self?.breweriesInSearch.count ?? -1) breweries")
                     
                     // Reload data
                     self?.tableView.reloadData()
@@ -171,6 +173,14 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchController.searchBar.setLeftPlaceHolder()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchController.searchBar.setCenteredPlaceHolder()
     }
     
 }

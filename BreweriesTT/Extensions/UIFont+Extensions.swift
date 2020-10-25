@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UIFont {
+    
     enum iowanOldStyle: String {
         case bold = "IowanOldStyle-Bold"
         case boldItalic = "IowanOldStyle-BoldItalic"
@@ -17,6 +18,6 @@ public extension UIFont {
         public func font(size: CGFloat) -> UIFont {
             return UIFont(name: self.rawValue, size: size)!
         }
-        
     }
+    
 }

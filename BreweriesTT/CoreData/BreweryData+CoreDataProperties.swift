@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension BreweryData {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<BreweryData> {

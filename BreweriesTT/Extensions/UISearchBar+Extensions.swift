@@ -8,6 +8,7 @@
 import UIKit
 
 extension UISearchBar {
+    
     public var textField: UITextField? {
         if #available(iOS 13, *) {
             return searchTextField
@@ -18,7 +19,6 @@ extension UISearchBar {
         }
         return textField
     }
-    
     
     private var activityIndicator: UIActivityIndicatorView? {
         return textField?.leftView?.subviews.compactMap{ $0 as? UIActivityIndicatorView }.first
@@ -47,11 +47,9 @@ extension UISearchBar {
             }
         }
     }
-}
-
-extension UISearchBar {
+    
     func setCenteredPlaceHolder() {
-        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        let textFieldInsideSearchBar = self.textField
         
         //get the sizes
         let searchBarWidth = self.frame.width
@@ -60,35 +58,13 @@ extension UISearchBar {
         let offsetIconToPlaceholder: CGFloat = 8
         let placeHolderWithIcon = placeholderIconWidth! + offsetIconToPlaceholder
         
-        let offset = UIOffset(horizontal: ((searchBarWidth / 2) - (placeHolderWidth! / 2) - placeHolderWithIcon), vertical: 0)
+        let offset = UIOffset(horizontal: ((searchBarWidth / 2) - (placeHolderWidth! / 2) - placeHolderWithIcon) - 10, vertical: 0)
         self.setPositionAdjustment(offset, for: .search)
     }
-}
-
-
-extension UISearchBar {
-    func setPlaceHolder(text: String?) {
-        self.layoutIfNeeded()
-        self.placeholder = text
-        var textFieldInsideSearchBar:UITextField?
-        if #available(iOS 13.0, *) {
-            textFieldInsideSearchBar = self.searchTextField
-        } else {
-            for view : UIView in (self.subviews[0]).subviews {
-                if let textField = view as? UITextField {
-                    textFieldInsideSearchBar = textField
-                }
-            }
-        }
-        
-        //get the sizes
-        let searchBarWidth = self.frame.width
-        let placeholderIconWidth = textFieldInsideSearchBar?.leftView?.frame.width
-        let placeHolderWidth = textFieldInsideSearchBar?.attributedPlaceholder?.size().width
-        let offsetIconToPlaceholder: CGFloat = 8
-        let placeHolderWithIcon = placeholderIconWidth! + offsetIconToPlaceholder
-        
-        let offset = UIOffset(horizontal: ((searchBarWidth / 2) - (placeHolderWidth! / 2) - placeHolderWithIcon), vertical: 0)
+    
+    func setLeftPlaceHolder() {
+        let offset = UIOffset(horizontal: 0, vertical: 0)
         self.setPositionAdjustment(offset, for: .search)
     }
+    
 }
