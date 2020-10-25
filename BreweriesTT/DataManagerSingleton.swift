@@ -13,14 +13,13 @@ class DataManagerSingleton {
     
     static let shared = DataManagerSingleton()
     
-    // Empty init to conform singleton pattern
-    init () {}
+    // Private init to conform singleton pattern
+    private init () {}
     
     func getBreweries(fromCoreData: @escaping ([Brewery]) -> (), fromServer: @escaping ([Brewery]) -> ()) {
         fromCoreData(fetchCoreData())
         
         let request = AF.request("https://api.openbrewerydb.org/breweries")
-        
         request
             .validate()
             .responseDecodable(of: [Brewery].self) { [weak self] (response) in
@@ -34,7 +33,6 @@ class DataManagerSingleton {
         
     func getBreweriesQuery(with name: String, complition: @escaping ([Brewery]) -> ()) {
         let request = AF.request("https://api.openbrewerydb.org/breweries", parameters: ["by_name": name])
-        
         request
             .validate()
             .responseDecodable(of: [Brewery].self) { (response) in

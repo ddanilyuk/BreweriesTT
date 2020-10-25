@@ -19,7 +19,7 @@
 		5F0438A0254321C7004F3513 /* BreweryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F04389E254321C7004F3513 /* BreweryTableViewCell.xib */; };
 		5F0438A925433478004F3513 /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0438A825433478004F3513 /* Brewery.swift */; };
 		5F1545512544366500FB93EB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1545502544366500FB93EB /* MapViewController.swift */; };
-		5F1545562544487000FB93EB /* MapViewNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1545552544487000FB93EB /* MapViewNavigationController.swift */; };
+		5F1545562544487000FB93EB /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1545552544487000FB93EB /* MapNavigationController.swift */; };
 		5F15455925444F5700FB93EB /* DataManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15455825444F5700FB93EB /* DataManagerSingleton.swift */; };
 		5F15456C254451C400FB93EB /* BreweryData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15456A254451C400FB93EB /* BreweryData+CoreDataClass.swift */; };
 		5F15456D254451C400FB93EB /* BreweryData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15456B254451C400FB93EB /* BreweryData+CoreDataProperties.swift */; };
@@ -44,7 +44,7 @@
 		5F04389E254321C7004F3513 /* BreweryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreweryTableViewCell.xib; sourceTree = "<group>"; };
 		5F0438A825433478004F3513 /* Brewery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
 		5F1545502544366500FB93EB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		5F1545552544487000FB93EB /* MapViewNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigationController.swift; sourceTree = "<group>"; };
+		5F1545552544487000FB93EB /* MapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		5F15455825444F5700FB93EB /* DataManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerSingleton.swift; sourceTree = "<group>"; };
 		5F15456A254451C400FB93EB /* BreweryData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreweryData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5F15456B254451C400FB93EB /* BreweryData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreweryData+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		5F256F062544C8C3006EFCA4 /* MapViewModule */ = {
 			isa = PBXGroup;
 			children = (
-				5F1545552544487000FB93EB /* MapViewNavigationController.swift */,
+				5F1545552544487000FB93EB /* MapNavigationController.swift */,
 				5F1545502544366500FB93EB /* MapViewController.swift */,
 			);
 			path = MapViewModule;
@@ -299,7 +299,7 @@
 				5F15455925444F5700FB93EB /* DataManagerSingleton.swift in Sources */,
 				5FDDC1842544C9510081436F /* UISearchBar+Extensions.swift in Sources */,
 				5F043880254312F6004F3513 /* BreweriesTT.xcdatamodeld in Sources */,
-				5F1545562544487000FB93EB /* MapViewNavigationController.swift in Sources */,
+				5F1545562544487000FB93EB /* MapNavigationController.swift in Sources */,
 				5FDDC1812544C9370081436F /* UIView+Extensions.swift in Sources */,
 				5F04389F254321C7004F3513 /* BreweryTableViewCell.swift in Sources */,
 				5F0438A925433478004F3513 /* Brewery.swift in Sources */,

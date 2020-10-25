@@ -177,7 +177,7 @@ class BreweryTableViewCell: UITableViewCell {
     @IBAction func didPressShowOnMap(_ sender: UIButton) {
         guard let brewery = brewery else { return }
         let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)
-        guard let mapViewNavigationController = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
+        guard let mapViewNavigationController = MapNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
         mapViewNavigationController.modalPresentationStyle = .fullScreen
         
         self.window?.rootViewController?.present(mapViewNavigationController, animated: true, completion: nil)

@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="1377" y="876"/>
         </scene>
-        <!--Map View Navigation Controller-->
+        <!--Map Navigation Controller-->
         <scene sceneID="8wS-jp-Tcz">
             <objects>
-                <navigationController storyboardIdentifier="MapViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="obr-tw-1UO" customClass="MapViewNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="obr-tw-1UO" customClass="MapNavigationController" customModule="BreweriesTT" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OQw-pn-FeD">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
