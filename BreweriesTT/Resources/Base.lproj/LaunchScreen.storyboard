@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -13,20 +13,37 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ouY-lw-fgu">
-                                <rect key="frame" x="50" y="44" width="364" height="818"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ouY-lw-fgu">
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIconRounded" translatesAutoresizingMaskIntoConstraints="NO" id="6s9-JC-dnj">
+                                <rect key="frame" x="112.66666666666669" y="144" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Faa-da-HsX"/>
+                                    <constraint firstAttribute="width" constant="150" id="cKv-hU-IDE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BreweriesTT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPF-qP-Slo">
+                                <rect key="frame" x="116.33333333333333" y="334" width="142.66666666666669" height="31.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ouY-lw-fgu" secondAttribute="bottom" id="ENQ-dj-ofM"/>
-                            <constraint firstItem="ouY-lw-fgu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Kx8-rP-bEK"/>
+                            <constraint firstItem="6s9-JC-dnj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="2d5-dX-VTK"/>
+                            <constraint firstAttribute="bottom" secondItem="ouY-lw-fgu" secondAttribute="bottom" id="ENQ-dj-ofM"/>
+                            <constraint firstItem="ouY-lw-fgu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kx8-rP-bEK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ouY-lw-fgu" secondAttribute="trailing" id="Woh-RR-Tq7"/>
+                            <constraint firstItem="6s9-JC-dnj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zvf-xk-fMb"/>
                             <constraint firstItem="ouY-lw-fgu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qj5-C5-zdF"/>
+                            <constraint firstItem="uPF-qP-Slo" firstAttribute="centerX" secondItem="6s9-JC-dnj" secondAttribute="centerX" id="sMM-gN-Hz6"/>
+                            <constraint firstItem="uPF-qP-Slo" firstAttribute="top" secondItem="6s9-JC-dnj" secondAttribute="bottom" constant="40" id="sr6-Sd-tRq"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +53,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AppIconRounded" width="150" height="150"/>
         <image name="background" width="144.5" height="244.5"/>
     </resources>
 </document>

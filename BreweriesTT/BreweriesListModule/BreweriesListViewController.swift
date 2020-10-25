@@ -180,7 +180,9 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchController.searchBar.setCenteredPlaceHolder()
+        if searchController.searchBar.text?.isEmpty ?? true {
+            searchController.searchBar.setCenteredPlaceHolder()
+        }
     }
     
 }
