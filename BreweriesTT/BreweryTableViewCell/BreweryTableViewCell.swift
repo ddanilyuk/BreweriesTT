@@ -145,9 +145,8 @@ class BreweryTableViewCell: UITableViewCell {
         cardView.layer.borderColor = UIColor.mainColor.cgColor
     }
 
-    
     override func prepareForReuse() {
-        // Remove all stacks. Add them in the correct order and show.
+        // Before reuse remove all stacks. Add them in the correct order and show.
         let allStacks: [UIStackView] = [typeStackView, phoneStackView, websiteStackView, countryStackView, stateStackView, cityStackView, streetStackView, mapStackView]
 
         allStacks.forEach( { stackView in
