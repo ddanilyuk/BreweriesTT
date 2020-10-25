@@ -23,6 +23,7 @@
 		5F15455925444F5700FB93EB /* DataManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15455825444F5700FB93EB /* DataManagerSingleton.swift */; };
 		5F15456C254451C400FB93EB /* BreweryData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15456A254451C400FB93EB /* BreweryData+CoreDataClass.swift */; };
 		5F15456D254451C400FB93EB /* BreweryData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F15456B254451C400FB93EB /* BreweryData+CoreDataProperties.swift */; };
+		5F5485C92545CB12001C0BBA /* BreweryTableviewCell+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5485C82545CB12001C0BBA /* BreweryTableviewCell+Delegate.swift */; };
 		5FDDC1812544C9370081436F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC1802544C9370081436F /* UIView+Extensions.swift */; };
 		5FDDC1842544C9510081436F /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC1832544C9510081436F /* UISearchBar+Extensions.swift */; };
 		5FDDC19725458A8B0081436F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC19625458A8A0081436F /* UIColor+Extensions.swift */; };
@@ -48,6 +49,7 @@
 		5F15455825444F5700FB93EB /* DataManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerSingleton.swift; sourceTree = "<group>"; };
 		5F15456A254451C400FB93EB /* BreweryData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreweryData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5F15456B254451C400FB93EB /* BreweryData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreweryData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5F5485C82545CB12001C0BBA /* BreweryTableviewCell+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreweryTableviewCell+Delegate.swift"; sourceTree = "<group>"; };
 		5FDDC1802544C9370081436F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5FDDC1832544C9510081436F /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		5FDDC19625458A8A0081436F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				5F04389D254321C7004F3513 /* BreweryTableViewCell.swift */,
+				5F5485C82545CB12001C0BBA /* BreweryTableviewCell+Delegate.swift */,
 				5F04389E254321C7004F3513 /* BreweryTableViewCell.xib */,
 			);
 			path = BreweryTableViewCell;
@@ -308,6 +311,7 @@
 				5F04389625431551004F3513 /* UIFont+Extensions.swift in Sources */,
 				5F043876254312F6004F3513 /* AppDelegate.swift in Sources */,
 				5F1545512544366500FB93EB /* MapViewController.swift in Sources */,
+				5F5485C92545CB12001C0BBA /* BreweryTableviewCell+Delegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

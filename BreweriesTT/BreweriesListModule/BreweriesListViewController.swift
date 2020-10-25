@@ -32,7 +32,7 @@ class BreweriesListViewController: UIViewController {
         dataManager.getBreweries(fromCoreData: { [weak self] breweriesFromCoreData in
             self?.breweries = breweriesFromCoreData
             
-            // If brews from core data is empty, start loading
+            // If brews from core data empty, start loading
             if breweriesFromCoreData.isEmpty {
                 self?.searchController.searchBar.isLoading = true
             }
@@ -75,6 +75,7 @@ class BreweriesListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.barStyle = .default
         
+        self.definesPresentationContext = true
         searchController.definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -173,14 +174,17 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
+        searchController.searchBar.setCenteredPlaceHolder()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchController.searchBar.showsCancelButton = true
         searchController.searchBar.setLeftPlaceHolder()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if searchController.searchBar.text?.isEmpty ?? true {
+            searchController.searchBar.showsCancelButton = false
             searchController.searchBar.setCenteredPlaceHolder()
         }
     }
@@ -196,13 +200,6 @@ extension BreweriesListViewController: BreweryTableViweCellDelegate {
         mapViewNavigationController.modalPresentationStyle = .fullScreen
         mapViewNavigationController.modalTransitionStyle = .coverVertical
         
-        if #available(iOS 13.0, *) {
-            // For some reason in iOS 12.4 i need to dismiss seacrh controller to show mapVC
-        } else {
-            if searchController.isActive {
-                searchController.dismiss(animated: false)
-            }
-        }
         self.present(mapViewNavigationController, animated: true, completion: nil)
     }
     
@@ -212,15 +209,7 @@ extension BreweriesListViewController: BreweryTableViweCellDelegate {
             let safariViewController = SFSafariViewController(url: url, configuration: configuration)
             safariViewController.preferredControlTintColor = UIColor.mainColor
             safariViewController.modalPresentationStyle = .fullScreen
-            safariViewController.modalTransitionStyle = .coverVertical
             
-            if #available(iOS 13.0, *) {
-                // For some reason in iOS 12.4 i need to dismiss seacrh controller to show safariVC
-            } else {
-                if searchController.isActive {
-                    searchController.dismiss(animated: false)
-                }
-            }
             self.present(safariViewController, animated: true, completion: nil)
         }
     }

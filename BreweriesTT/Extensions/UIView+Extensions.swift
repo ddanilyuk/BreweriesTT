@@ -8,9 +8,13 @@
 import UIKit
 
 extension UIView {
-    
-    class var identifier: String {
+    static var identifier: String {
         return String(describing: self)
     }
-    
+}
+
+extension UIViewController {
+    static var identifier: String {
+        return String(describing: self)
+    }
 }

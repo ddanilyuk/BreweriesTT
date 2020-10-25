@@ -64,6 +64,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Brewery" id="DWY-9C-5ds">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="IbH-5J-5AI">
+                            <color key="tintColor" name="AccentColor"/>
                             <connections>
                                 <action selector="didPressClose:" destination="iYf-iX-VZp" id="ETX-hu-0VW"/>
                             </connections>

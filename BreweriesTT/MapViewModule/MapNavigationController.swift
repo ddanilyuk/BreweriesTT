@@ -12,7 +12,6 @@ class MapNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     static func instantiateMapViewControllerWithNavigation(with location: CLLocation, name: String) -> MapNavigationController? {

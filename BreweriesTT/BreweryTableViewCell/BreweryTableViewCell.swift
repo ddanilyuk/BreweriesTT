@@ -9,13 +9,6 @@ import UIKit
 import SafariServices
 import MapKit
 
-
-protocol BreweryTableViweCellDelegate {
-    func didPressShowMap(with brewery: Brewery)
-    func didPressOpenWebsite(with brewery: Brewery)
-}
-
-
 class BreweryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -52,7 +45,7 @@ class BreweryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardView: UIView!
     
-    var delegate: BreweryTableViweCellDelegate?
+    weak var delegate: BreweryTableViweCellDelegate?
     
     public var brewery: Brewery? {
         didSet {
@@ -165,7 +158,6 @@ class BreweryTableViewCell: UITableViewCell {
             mainStackView.addArrangedSubview(stackView)
             stackView.isHidden = false
         })
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
