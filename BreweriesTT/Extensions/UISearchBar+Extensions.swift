@@ -23,7 +23,7 @@ extension UISearchBar {
     private var activityIndicator: UIActivityIndicatorView? {
         return textField?.leftView?.subviews.compactMap{ $0 as? UIActivityIndicatorView }.first
     }
-    
+
     var isLoading: Bool {
         get {
             return activityIndicator != nil
@@ -48,7 +48,7 @@ extension UISearchBar {
         }
     }
     
-    func setCenteredPlaceHolder() {
+    func setCenteredPlaceHolder(animated: Bool) {
         let textFieldInsideSearchBar = self.textField
         
         //get the sizes
@@ -57,13 +57,22 @@ extension UISearchBar {
         let placeHolderWidth = textFieldInsideSearchBar?.attributedPlaceholder?.size().width
         let offsetIconToPlaceholder: CGFloat = 8
         let placeHolderWithIcon = placeholderIconWidth! + offsetIconToPlaceholder
-        
         let offset = UIOffset(horizontal: ((searchBarWidth / 2) - (placeHolderWidth! / 2) - placeHolderWithIcon) - 10, vertical: 0)
+        
+        if animated {
+            self.textField?.subviews[2].fadeTransition(0.3, isFromLeftToRight: true)
+            self.textField?.leftView?.fadeTransition(0.3, isFromLeftToRight: true)
+        }
+        
         self.setPositionAdjustment(offset, for: .search)
     }
     
-    func setLeftPlaceHolder() {
+    func setLeftPlaceHolder(animated: Bool) {
         let offset = UIOffset(horizontal: 0, vertical: 0)
+        if animated {
+            self.textField?.subviews[2].fadeTransition(0.3, isFromLeftToRight: false)
+            self.textField?.leftView?.fadeTransition(0.3, isFromLeftToRight: false)
+        }
         self.setPositionAdjustment(offset, for: .search)
     }
     

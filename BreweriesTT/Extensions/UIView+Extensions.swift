@@ -8,13 +8,15 @@
 import UIKit
 
 extension UIView {
-    static var identifier: String {
-        return String(describing: self)
+        
+    func fadeTransition(_ duration: CFTimeInterval, isFromLeftToRight: Bool) {
+        let transition = CATransition()
+        transition.duration = duration
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = isFromLeftToRight ? .fromLeft : .fromRight
+        
+        layer.add(transition, forKey: nil)
     }
-}
-
-extension UIViewController {
-    static var identifier: String {
-        return String(describing: self)
-    }
+    
 }

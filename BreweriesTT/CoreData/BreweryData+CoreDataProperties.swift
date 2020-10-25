@@ -51,7 +51,7 @@ extension BreweryData {
                        updatedAt: updatedAt)
     }
     
-    func fillWith(brewery: Brewery) {
+    func fillWith(_ brewery: Brewery) {
         self.id = Int16(brewery.id)
         self.name = brewery.name
         self.breweryType = brewery.breweryType

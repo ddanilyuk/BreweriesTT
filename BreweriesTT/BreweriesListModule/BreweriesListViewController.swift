@@ -32,7 +32,7 @@ class BreweriesListViewController: UIViewController {
         dataManager.getBreweries(fromCoreData: { [weak self] breweriesFromCoreData in
             self?.breweries = breweriesFromCoreData
             
-            // If brews from core data empty, start loading
+            // If brews from core data empty, start activity indicator
             if breweriesFromCoreData.isEmpty {
                 self?.searchController.searchBar.isLoading = true
             }
@@ -81,7 +81,7 @@ class BreweriesListViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        searchController.searchBar.setCenteredPlaceHolder()
+        searchController.searchBar.setCenteredPlaceHolder(animated: false)
         
         // Search bar apppearance
         searchController.searchBar.textField?.tintColor = UIColor.black
@@ -157,7 +157,6 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
                     
                     // Apply new breweries
                     self?.breweriesInSearch = newBrews
-                    print("Find on server \(self?.breweriesInSearch.count ?? -1) breweries")
                     
                     // Reload data
                     self?.tableView.reloadData()
@@ -174,23 +173,21 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.isLoading = false
-        searchController.searchBar.setCenteredPlaceHolder()
+        searchController.searchBar.setCenteredPlaceHolder(animated: true)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchController.searchBar.showsCancelButton = true
-        searchController.searchBar.setLeftPlaceHolder()
+        searchController.searchBar.setLeftPlaceHolder(animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if searchController.searchBar.text?.isEmpty ?? true {
-            searchController.searchBar.showsCancelButton = false
-            searchController.searchBar.setCenteredPlaceHolder()
+            searchController.isActive = false
+            searchController.searchBar.setCenteredPlaceHolder(animated: true)
         }
     }
     
 }
-
 
 extension BreweriesListViewController: BreweryTableViweCellDelegate {
     

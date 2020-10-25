@@ -15,12 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        // Disabling cahce because we have CoreData
+        // Disable cahce because we use CoreData
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
 
-        if let window = UIApplication.shared.windows.first as UIWindow? {
-            window.backgroundColor = UIColor.black
-        }
         return true
     }
 

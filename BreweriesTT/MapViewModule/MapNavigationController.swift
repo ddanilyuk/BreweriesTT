@@ -17,7 +17,7 @@ class MapNavigationController: UINavigationController {
     static func instantiateMapViewControllerWithNavigation(with location: CLLocation, name: String) -> MapNavigationController? {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        guard let navigataionController = storyboard.instantiateViewController(withIdentifier: String(describing: MapNavigationController.self)) as? MapNavigationController else { return nil }
+        guard let navigataionController = storyboard.instantiateViewController(withIdentifier: MapNavigationController.identifier) as? MapNavigationController else { return nil }
         
         guard let mapViewController = navigataionController.viewControllers.first as? MapViewController else { return nil }
         mapViewController.initialLocation = location

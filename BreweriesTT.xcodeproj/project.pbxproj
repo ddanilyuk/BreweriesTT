@@ -27,6 +27,7 @@
 		5FDDC1812544C9370081436F /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC1802544C9370081436F /* UIView+Extensions.swift */; };
 		5FDDC1842544C9510081436F /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC1832544C9510081436F /* UISearchBar+Extensions.swift */; };
 		5FDDC19725458A8B0081436F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDC19625458A8A0081436F /* UIColor+Extensions.swift */; };
+		5FF46B0E254625DB0067EBC8 /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF46B0D254625DB0067EBC8 /* UIResponder+Extensions.swift */; };
 		65DCA57E67A78270D25D9A45 /* Pods_BreweriesTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63332C2FB456C8126766BF9 /* Pods_BreweriesTT.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		5FDDC1802544C9370081436F /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		5FDDC1832544C9510081436F /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
 		5FDDC19625458A8A0081436F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		5FF46B0D254625DB0067EBC8 /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
 		6560FF0ACBFDE6FECC1BB5E9 /* Pods-BreweriesTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreweriesTT.release.xcconfig"; path = "Target Support Files/Pods-BreweriesTT/Pods-BreweriesTT.release.xcconfig"; sourceTree = "<group>"; };
 		B63332C2FB456C8126766BF9 /* Pods_BreweriesTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BreweriesTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D3EA397C3C8A558E63FD9A /* Pods-BreweriesTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BreweriesTT.debug.xcconfig"; path = "Target Support Files/Pods-BreweriesTT/Pods-BreweriesTT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				5F04389525431551004F3513 /* UIFont+Extensions.swift */,
 				5FDDC1802544C9370081436F /* UIView+Extensions.swift */,
+				5FF46B0D254625DB0067EBC8 /* UIResponder+Extensions.swift */,
 				5FDDC1832544C9510081436F /* UISearchBar+Extensions.swift */,
 				5FDDC19625458A8A0081436F /* UIColor+Extensions.swift */,
 			);
@@ -308,6 +311,7 @@
 				5F0438A925433478004F3513 /* Brewery.swift in Sources */,
 				5F04387A254312F6004F3513 /* BreweriesListViewController.swift in Sources */,
 				5F15456D254451C400FB93EB /* BreweryData+CoreDataProperties.swift in Sources */,
+				5FF46B0E254625DB0067EBC8 /* UIResponder+Extensions.swift in Sources */,
 				5F04389625431551004F3513 /* UIFont+Extensions.swift in Sources */,
 				5F043876254312F6004F3513 /* AppDelegate.swift in Sources */,
 				5F1545512544366500FB93EB /* MapViewController.swift in Sources */,
