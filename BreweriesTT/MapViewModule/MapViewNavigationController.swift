@@ -9,9 +9,6 @@ import UIKit
 import MapKit
 
 class MapViewNavigationController: UINavigationController {
-
-    var statusBarStyle = UIStatusBarStyle.default { didSet { setNeedsStatusBarAppearanceUpdate() } }
-    override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
     
     override func viewDidLoad() {
         super.viewDidLoad()

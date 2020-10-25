@@ -84,7 +84,6 @@ class BreweryTableViewCell: UITableViewCell {
             if let websiteURL = brewery.websiteURL, !websiteURL.isEmpty {
                 let websiteAttributedText = NSMutableAttributedString(string: brewery.websiteURL!, attributes: [
                     NSAttributedString.Key.font : UIFont.iowanOldStyle.roman.font(size: 13),
-                    NSAttributedString.Key.foregroundColor : UIColor.black.cgColor,
                     NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
                 ])
                 websiteButton.setAttributedTitle(websiteAttributedText, for: .normal)
@@ -100,7 +99,7 @@ class BreweryTableViewCell: UITableViewCell {
         
         // Set fonts
         nameLabel.font = UIFont.iowanOldStyle.bold.font(size: 20)
-        nameLabel.textColor = UIColor(named: "BlackTextColor")
+        nameLabel.textColor = UIColor.blackTextColor
         
         phoneLabel.font = UIFont.iowanOldStyle.roman.font(size: 13)
         websiteButton.titleLabel?.font = UIFont.iowanOldStyle.roman.font(size: 13)
@@ -118,12 +117,12 @@ class BreweryTableViewCell: UITableViewCell {
         mapButton.layer.cornerRadius = 8
         cardView.layer.cornerRadius = 20
         cardView.layer.borderWidth = 1
-        cardView.layer.borderColor = UIColor(named: "MainColor")?.cgColor
+        cardView.layer.borderColor = UIColor.mainColor.cgColor
     }
 
     
     override func prepareForReuse() {
-        // Remove all stacks and add them in the correct order
+        // Remove all stacks. Add them in the correct order and show.
         let allStacks: [UIStackView] = [phoneStackView, websiteStackView, countryStackView, cityStackView, streetStackView, mapStackView]
 
         allStacks.forEach( { stackView in
@@ -145,8 +144,8 @@ class BreweryTableViewCell: UITableViewCell {
     @IBAction func didPressShowWebsite(_ sender: UIButton) {
         if let url = URL(string: brewery?.websiteURL ?? "") {
             let configuration = SFSafariViewController.Configuration()
-            configuration.entersReaderIfAvailable = true
             let safariViewController = SFSafariViewController(url: url, configuration: configuration)
+            
             self.window?.rootViewController?.present(safariViewController, animated: true, completion: nil)
         }
     }
@@ -155,10 +154,10 @@ class BreweryTableViewCell: UITableViewCell {
     @IBAction func didPressShowOnMap(_ sender: UIButton) {
         guard let brewery = brewery else { return }
         let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)
-        guard let mapViewController = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
-        mapViewController.modalPresentationStyle = .formSheet
+        guard let mapViewNavigationController = MapViewNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
+        mapViewNavigationController.modalPresentationStyle = .formSheet
         
-        self.window?.rootViewController?.present(mapViewController, animated: true, completion: nil)
+        self.window?.rootViewController?.present(mapViewNavigationController, animated: true, completion: nil)
     }
     
 }

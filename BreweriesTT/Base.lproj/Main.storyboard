@@ -63,7 +63,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Brewery" id="DWY-9C-5ds">
-                        <barButtonItem key="leftBarButtonItem" title="Close" style="plain" id="IbH-5J-5AI">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="IbH-5J-5AI">
                             <connections>
                                 <action selector="didPressClose:" destination="iYf-iX-VZp" id="ETX-hu-0VW"/>
                             </connections>
@@ -103,7 +103,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="BAH-fw-D0a">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="MainColor"/>
+                        <color key="barTintColor" name="AccentColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -116,7 +116,7 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="MainColor">
+        <namedColor name="AccentColor">
             <color red="0.0040000001899898052" green="0.52499997615814209" blue="0.082000002264976501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">

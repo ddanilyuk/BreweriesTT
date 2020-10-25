@@ -13,24 +13,35 @@ class BreweriesListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var brews: [Brewery] = []
-    var brewsInSearch: [Brewery] = []
+    var breweries: [Brewery] = []
+    var breweriesInSearch: [Brewery] = []
     
-    let search = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: nil)
     var isSearching: Bool = false
+    var pendingRequestWorkItem: DispatchWorkItem?
 
     let dataManager = DataManagerSingleton.shared
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupSearchAndNavigation()
         
-        brews = dataManager.getData { newBrews in
-            // Receiving new brews from server
-            self.brews = newBrews
-            self.tableView.reloadData()
-        }
+        // Getting data
+        dataManager.getBreweries(fromCoreData: { [weak self] breweriesFromCoreData in
+            self?.breweries = breweriesFromCoreData
+            
+            // If brews from core data is empty, start loading
+            if breweriesFromCoreData.isEmpty {
+                self?.searchController.searchBar.isLoading = true
+            }
+        }, fromServer: { [weak self] breweriesFromServer in
+            self?.breweries = breweriesFromServer
+            // Stop loading
+            self?.searchController.searchBar.isLoading = false
+            self?.tableView.reloadData()
+        })
+
         tableView.reloadData()
     }
     
@@ -41,12 +52,12 @@ class BreweriesListViewController: UIViewController {
         
         // Setup table view background
         let tableViewBackgroundImage = UIImage(named: "background")
-        let tableViewBackroundImageView = UIImageView(frame: tableView.frame)
-        tableViewBackroundImageView.image = tableViewBackgroundImage
-        tableViewBackroundImageView.contentMode = .bottomRight
-        tableView.backgroundView = tableViewBackroundImageView
+        let tableViewBackgroundImageView = UIImageView(frame: tableView.frame)
+        tableViewBackgroundImageView.image = tableViewBackgroundImage
+        tableViewBackgroundImageView.contentMode = .bottomRight
+        tableView.backgroundView = tableViewBackgroundImageView
         
-        // Setup
+        // Setup table view content
         tableView.rowHeight = UITableView.automaticDimension
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
@@ -56,23 +67,35 @@ class BreweriesListViewController: UIViewController {
         self.title = "Breweries"
         
         // Search
-        search.searchResultsUpdater = self
-        search.searchBar.delegate = self
-        self.navigationItem.searchController = search
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
 
-        search.searchBar.placeholder = "Search"
-        search.searchBar.barStyle = .default
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.barStyle = .default
         
-        search.obscuresBackgroundDuringPresentation = false
-        search.hidesNavigationBarDuringPresentation = false
+        searchController.definesPresentationContext = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        
-        
         // Search bar apppearance
-        search.searchBar.textField?.tintColor = UIColor.black
-        search.searchBar.textField?.backgroundColor = UIColor.white
-        search.searchBar.tintColor = UIColor.white
+        searchController.searchBar.textField?.tintColor = UIColor.black
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.white
+        
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.textField?.backgroundColor = UIColor.white
+        } else {
+            if let textField = searchController.searchBar.textField {
+                if let backgroundview = textField.subviews.first {
+                    backgroundview.backgroundColor = UIColor.white
+                    backgroundview.layer.cornerRadius = 10;
+                    backgroundview.clipsToBounds = true;
+                }
+            }
+        }
+        
     }
     
 }
@@ -81,21 +104,18 @@ class BreweriesListViewController: UIViewController {
 extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? brewsInSearch.count : brews.count
+        return isSearching ? breweriesInSearch.count : breweries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BreweryTableViewCell.identifier) as? BreweryTableViewCell else { return UITableViewCell() }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: BreweryTableViewCell.identifier) as? BreweryTableViewCell else {
-            return UITableViewCell()
-        }
-        
+        cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.backgroundView = UIView()
         cell.selectedBackgroundView = UIView()
         
-        cell.brewery = isSearching ? brewsInSearch[indexPath.row] : brews[indexPath.row]
-        
+        cell.brewery = isSearching ? breweriesInSearch[indexPath.row] : breweries[indexPath.row]
         return cell
     }
 
@@ -108,34 +128,49 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
         guard let searchText = searchController.searchBar.text else { return }
         let lowerCaseSearchText = searchText.lowercased()
         
-        if lowerCaseSearchText == "" {
-            brewsInSearch = []
+        if lowerCaseSearchText.isEmpty {
             isSearching = false
+            breweriesInSearch = breweries
+            searchController.searchBar.isLoading = false
         } else {
             isSearching = true
         }
         
+        // Cancel previous request
+        pendingRequestWorkItem?.cancel()
+
         if isSearching {
-            // Requesting new breweries from server
-            search.searchBar.isLoading = true
-            dataManager.getBreweries(with: searchText) { newBrews in
-                self.search.searchBar.isLoading = false
-                self.brewsInSearch = newBrews.filter { $0.name.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "")  }
-                print("Find in server \(self.brewsInSearch.count) breweries")
-                self.tableView.reloadData()
+            // Start loading activity indicator
+            searchController.searchBar.isLoading = true
+            
+            // While waiting for response from server, filter available breweries
+            breweriesInSearch = breweriesInSearch.filter { $0.name.lowercased().contains(lowerCaseSearchText) }.sorted(by: { $0.id < $1.id })
+
+            // Wrap our request in a work item
+            let requestWorkItem = DispatchWorkItem { [weak self] in
+                self?.dataManager.getBreweriesQuery(with: searchText) { newBrews in
+                    // Stop loading
+                    self?.searchController.searchBar.isLoading = false
+                    
+                    // Apply new breweries
+                    self?.breweriesInSearch = newBrews
+                    print("Find in server \(self?.breweriesInSearch.count ?? -1) breweries")
+                    
+                    // Reload data
+                    self?.tableView.reloadData()
+                }
             }
             
-            // If user entered only 1 Character, try to filter started array
-            if lowerCaseSearchText.count == 1 {
-                brewsInSearch = brews.filter { $0.name.lowercased().contains(lowerCaseSearchText) }.sorted(by: { $0.id < $1.id })
-            }
+            // Save the new work item and execute it after 500 ms (if user dont change any text)
+            pendingRequestWorkItem = requestWorkItem
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: requestWorkItem)
         }
-        tableView.reloadData()
 
+        tableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("clicked")
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.isLoading = false
     }
-
+    
 }

@@ -13,26 +13,26 @@ class DataManagerSingleton {
     
     static let shared = DataManagerSingleton()
     
+    // Empty init to conform singleton pattern
     init () {}
     
-    func getData(complition: @escaping ([Brewery]) -> ()) -> [Brewery] {
+    func getBreweries(fromCoreData: @escaping ([Brewery]) -> (), fromServer: @escaping ([Brewery]) -> ()) {
+        fromCoreData(fetchCoreData())
+        
         let request = AF.request("https://api.openbrewerydb.org/breweries")
         
         request
             .validate()
-            .responseDecodable(of: [Brewery].self) { (response) in
+            .responseDecodable(of: [Brewery].self) { [weak self] (response) in
                 guard let breweies = response.value else { return }
-                self.updateCoreData(withNew: breweies)
+                self?.updateCoreData(withNew: breweies)
                 print("New breweries loaded and added to core data!")
                 
-                complition(breweies.sorted { $0.id < $1.id })
+                fromServer(breweies.sorted { $0.id < $1.id })
             }
-        
-        
-        return fetchCoreData()
     }
-    
-    func getBreweries(with name: String, complition: @escaping ([Brewery]) -> ()) {
+        
+    func getBreweriesQuery(with name: String, complition: @escaping ([Brewery]) -> ()) {
         let request = AF.request("https://api.openbrewerydb.org/breweries", parameters: ["by_name": name])
         
         request
@@ -58,10 +58,10 @@ class DataManagerSingleton {
         self.deleteAllFromCoreData()
 
         DispatchQueue.main.async {
-            for brewery in breweries {
+            breweries.forEach( { brewery in
                 let breweryData = BreweryData(context: managedContext)
                 breweryData.fillWith(brewery: brewery)
-            }
+            })
             do {
                 if managedContext.hasChanges {
                     try managedContext.save()

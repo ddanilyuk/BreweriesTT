@@ -40,4 +40,5 @@ class MapViewController: UIViewController {
             longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
 }
