@@ -9,6 +9,13 @@ import UIKit
 import SafariServices
 import MapKit
 
+
+protocol BreweryTableViweCellDelegate {
+    func didPressShowMap(with brewery: Brewery)
+    func didPressOpenWebsite(with brewery: Brewery)
+}
+
+
 class BreweryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -44,6 +51,8 @@ class BreweryTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var cardView: UIView!
+    
+    var delegate: BreweryTableViweCellDelegate?
     
     public var brewery: Brewery? {
         didSet {
@@ -163,24 +172,14 @@ class BreweryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    // Present SFSafariViewController
     @IBAction func didPressShowWebsite(_ sender: UIButton) {
-        if let url = URL(string: brewery?.websiteURL ?? "") {
-            let configuration = SFSafariViewController.Configuration()
-            let safariViewController = SFSafariViewController(url: url, configuration: configuration)
-            
-            self.window?.rootViewController?.present(safariViewController, animated: true, completion: nil)
-        }
+        guard let brewery = brewery else { return }
+        delegate?.didPressOpenWebsite(with: brewery)
     }
     
-    // Present MapViewController
     @IBAction func didPressShowOnMap(_ sender: UIButton) {
         guard let brewery = brewery else { return }
-        let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)
-        guard let mapViewNavigationController = MapNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
-        mapViewNavigationController.modalPresentationStyle = .fullScreen
-        
-        self.window?.rootViewController?.present(mapViewNavigationController, animated: true, completion: nil)
+        delegate?.didPressShowMap(with: brewery)
     }
     
 }

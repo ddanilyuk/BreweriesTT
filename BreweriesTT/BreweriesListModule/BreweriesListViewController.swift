@@ -7,7 +7,8 @@
 
 import UIKit
 import Alamofire
-
+import SafariServices
+import MapKit
 
 class BreweriesListViewController: UIViewController {
 
@@ -102,7 +103,6 @@ class BreweriesListViewController: UIViewController {
     
 }
 
-
 extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,11 +118,11 @@ extension BreweriesListViewController: UITableViewDelegate, UITableViewDataSourc
         cell.selectedBackgroundView = UIView()
         
         cell.brewery = isSearching ? breweriesInSearch[indexPath.row] : breweries[indexPath.row]
+        cell.delegate = self
         return cell
     }
 
 }
-
 
 extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -182,6 +182,46 @@ extension BreweriesListViewController: UISearchResultsUpdating, UISearchBarDeleg
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         if searchController.searchBar.text?.isEmpty ?? true {
             searchController.searchBar.setCenteredPlaceHolder()
+        }
+    }
+    
+}
+
+
+extension BreweriesListViewController: BreweryTableViweCellDelegate {
+    
+    func didPressShowMap(with brewery: Brewery) {
+        let location = CLLocation(latitude: Double(brewery.latitude ?? "") ?? 0, longitude: Double(brewery.longitude ?? "") ?? 0)
+        guard let mapViewNavigationController = MapNavigationController.instantiateMapViewControllerWithNavigation(with: location, name: brewery.name) else { return }
+        mapViewNavigationController.modalPresentationStyle = .fullScreen
+        mapViewNavigationController.modalTransitionStyle = .coverVertical
+        
+        if #available(iOS 13.0, *) {
+            // For some reason in iOS 12.4 i need to dismiss seacrh controller to show mapVC
+        } else {
+            if searchController.isActive {
+                searchController.dismiss(animated: false)
+            }
+        }
+        self.present(mapViewNavigationController, animated: true, completion: nil)
+    }
+    
+    func didPressOpenWebsite(with brewery: Brewery) {
+        if let url = URL(string: brewery.websiteURL ?? "") {
+            let configuration = SFSafariViewController.Configuration()
+            let safariViewController = SFSafariViewController(url: url, configuration: configuration)
+            safariViewController.preferredControlTintColor = UIColor.mainColor
+            safariViewController.modalPresentationStyle = .fullScreen
+            safariViewController.modalTransitionStyle = .coverVertical
+            
+            if #available(iOS 13.0, *) {
+                // For some reason in iOS 12.4 i need to dismiss seacrh controller to show safariVC
+            } else {
+                if searchController.isActive {
+                    searchController.dismiss(animated: false)
+                }
+            }
+            self.present(safariViewController, animated: true, completion: nil)
         }
     }
     
